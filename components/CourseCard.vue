@@ -1,5 +1,5 @@
 <template>
-  <q-card class="my-card" @click="$emit('click')">
+  <q-card class="my-card" @click="$emit('click')" style="cursor: pointer;">
     <img :src="thumbnail" />
 
     <q-card-section>

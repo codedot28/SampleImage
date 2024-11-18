@@ -1,12 +1,15 @@
 <template>
   <q-layout view="hHh lpR fFf" class="bg-grey-2">
-    <q-header elevated class="bg-dark text-white">
+    <q-header elevated class="bg-grey-1 text-grey-9">
       <q-toolbar>
-        <q-toolbar-title> ImageCollection </q-toolbar-title>
-        <q-separator dark vertical />
-        <q-btn stretch flat label="Home" to="/" />
-        <q-separator dark vertical />
-        <q-btn stretch flat label="About" to="/about" />
+        <q-toolbar-title> Image Collection </q-toolbar-title>
+        <NuxtLink v-slot="{navigate}" custom to="/">
+          <q-btn stretch flat label="Home" no-caps @click="navigate"/>
+        </NuxtLink>
+        <q-separator gray vertical />
+        <NuxtLink v-slot="{navigate}" custom to="/about">
+          <q-btn stretch flat label="About" no-caps  to="/about" @click="navigate"/>
+        </NuxtLink>       
       </q-toolbar>
     </q-header>
     <q-page-container :style="pageContainerStyle">

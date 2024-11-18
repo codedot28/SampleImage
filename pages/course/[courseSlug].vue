@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-xl">
+
     <AppCard>
       <template #header>
         <div class="text-h5 text-weight-medium">{{ course?.title }}</div>
@@ -18,11 +18,33 @@
       </div>
      
       <p class="q-mt-lg text-grey-8 q-my-sm" style="white-space: pre-wrap;">{{ course?.content }}</p>
+      <q-separator class="q-mb-lg" />
+    <q-form class="q-gutter-y-md">
+      <q-btn
+        label="수강완료"
+        class="full-width"
+        color="green"
+        unelevated
+        :outline="completed ? false : true"
+        :icon="completed ? 'check' : undefined"
+        @click="completed = !completed"
+      />
+      <q-input
+        v-model="memo"
+        type="textarea"
+        outlined
+        dense
+        placeholder="메모를 작성해주세요."
+        rows="3"
+				autogrow
+      />
+    </q-form>
 
       <template #footer>
+        <ClientOnly>
         <q-btn
           v-if="prevCourse"
-          label="이전 강의"
+          label="이전"
           color="primary"
           unelevated
           :to="prevCourse.path"
@@ -30,14 +52,15 @@
         <q-space />
         <q-btn
           v-if="nextCourse"
-          label="다음 강의"
+          label="다음"
           color="primary"
           unelevated
           :to="nextCourse.path"
         />
+      </ClientOnly>
       </template>
     </AppCard>
-  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -47,7 +70,14 @@ const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 console.log('[courseSlug].vue 컴포넌트 setup hooks');
 definePageMeta({
   key: (route) => route.fullPath,
+  title: 'My home page',
+  pageType:'',
+  keepalive: true,
+  alias: ['/lecture/:courseSlug'],
 });
+
+const memo = ref('');
+const completed = ref(false);
 </script>
 
 <style scoped></style>
