@@ -9,7 +9,13 @@
         <q-separator gray vertical />
         <NuxtLink v-slot="{navigate}" custom to="/about">
           <q-btn stretch flat label="About" no-caps  to="/about" @click="navigate"/>
-        </NuxtLink>       
+        </NuxtLink>  
+        <q-separator gray vertical />
+        <q-btn stretch flat label="Naver" no-caps @click="moveNaver" />
+        <q-separator gray vertical />
+        <NuxtLink v-slot="{ navigate }" custom to="/admin">
+          <q-btn stretch flat label="Admin" no-caps @click="navigate()" />
+        </NuxtLink>     
       </q-toolbar>
     </q-header>
     <q-page-container :style="pageContainerStyle">
@@ -22,4 +28,11 @@ const pageContainerStyle = computed(() => ({
   maxWidth: "1080px",
   margin: "0 auto",
 }));
+
+const moveNaver = async () => {
+  await navigateTo('https://naver.com', {
+    external: true,
+    open: { target: '_blank' },
+  });
+};
 </script>
