@@ -9,5 +9,13 @@ export default defineNuxtConfig({
   modules: [
     'nuxt-quasar-ui'
   ],
+  imports: {
+    presets: [
+      {
+        from: 'vue-i18n',
+        imports: ['useI18n'],
+      },
+    ],
+  },
   quasar: { /* */ }
 })
